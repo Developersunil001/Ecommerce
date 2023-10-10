@@ -1,0 +1,36 @@
+<% include ./partials/header.ejs %>
+
+    <div class="container p-3">
+        <h1>Mart Page</h1>
+        <hr>
+        <h3 >Recent Created Products</h3>
+        <div class="mt-4">
+
+
+            <div style="gap:20px;" class="d-flex">
+
+                <% allproducts.forEach(function(pr){%>
+                    <div class="card"
+                        style="width: 18rem;box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;">
+                        <div class="card-body">
+                            <img style="max-height: 12rem; width:100%; border-radius:5px; margin-right:10px;"
+                                src="../images/productimage/<%=pr.pic[0]%>" alt="">
+                            <h5 class="card-title" style="margin-top:2px;">
+                                <%= pr.userid.name %>
+                            </h5>
+                            <h6 style="opacity:1; font-weight:100;">Sold By <%=pr.userid.name%></h6>
+                            <p class="card-text" style='line-height: 0px;'>
+                                <%= pr.desc %>
+                            </p>
+                        </div>
+                        <div style="gap:10px; margin-left: 20px;margin-bottom:10px;" class="button-section d-flex">
+                            <a href="" class="btn btn-warning">Wishlist</a>
+                            <a href="" class="btn btn-primary">Add to Cart</a>
+                        </div>
+
+                    </div>
+                    <%})%>
+            </div>
+        </div>
+    </div>
+<!-- <% include ./partials/footer.ejs %> -->

@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+</head>
+
+
+
+<body>
+    <style>
+        #photu{
+            width: 150px;
+            height: 150px;
+            border-radius: 10px;
+            border: 2px solid #dadada;
+            margin-top: 30px;
+        }
+
+         img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        #btn1{
+            position: absolute;
+            left:85%;
+            top:3%;
+        }
+    </style>
+
+
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Product Create Page</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <form enctype="multipart/form-data" method="post" action="/create/product">
+
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Product Name</label>
+                            <input name="name" type="text" class="form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Price</label>
+                            <input name="price" type="text" class="form-control" id="exampleInputPassword1">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Description</label>
+                            <textarea name="desc" type="text" class="form-control"
+                                id="exampleInputPassword1"></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Images</label>
+                            <div class="input-group mb-3">
+                                <input name="image" type="file" class="form-control" id="inputGroupFile02">
+                                <!-- <label class="input-group-text" for="inputGroupFile02">Upload</label> -->
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label"></label>
+                            <div class="input-group mb-3">
+                                <input name="image" type="file" class="form-control" id="inputGroupFile02">
+                                <!-- <label class="input-group-text" for="inputGroupFile02">Upload</label> -->
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label"></label>
+                            <div class="input-group mb-3">
+                                <input name="image" type="file" class="form-control" id="inputGroupFile02">
+                                <!-- <label class="input-group-text" for="inputGroupFile02">Upload</label> -->
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Create Product</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container p-3">
+        <a id="btn1" class="btn btn-success" href="/mart">Visit Mart</a>
+        <h1>Profile Page</h1>
+        <hr>
+        <div class="d-flex justify-content-between  bg-danger px-4 py-2 text-light bg-opacity-100">
+            <span class="mt-1">Your profile is incompleted, <a class="text-light" href="/verify">verify your
+                    account</a> to get complete access</span>
+            <a class="text-light btn btn-danger" href="/verify">verify now</a>
+        </div>
+
+        <div class="d-flex flex-direction:colown">
+            <div id="photu">
+                <img src="https://images.unsplash.com/photo-1673972249409-2c27a19205b3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80"
+                    alt="">
+            </div>
+            <div style="margin-top:30px; margin-left: 10px;" class="text">
+                <h2 style="margin-bottom:-4px;">
+                    <%=user.name %>
+                </h2>
+                <small style="line-height: 1; margin-bottom:-20px; opacity: .8;">@<%= user.username %></small>
+                <a style="text-decoration: none; font-weight:500;padding-left:25px;"
+                    class="d-flex btn btn-outline-success mt-3" href="/edit">Edit Your Profile</a>
+            </div>
+        </div>
+        <div style="gap:10px;" class="d-flex mt-3">
+            <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Create new
+                product</a>
+            <a href="" class="btn btn-warning">Update old product</a>
+            <a href="" class="btn btn-info">Show all product</a>
+        </div>
+
+        <div class="mt-4">
+            <h2>Recent Created Products</h2>
+
+            <div style="gap:20px;" class="d-flex">
+
+                <% user.products.forEach(function(pr){%>
+                    <div  class="card"
+                        style="width: 18rem;box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;">
+                        <div style="width:100%; height: 100%;" class="card-body">
+                            <img style="max-height: 12rem; width:100%;  border-radius:5px; margin-right:10px;"
+                                src="../images/productimage/<%=pr.pic[0]%>" alt="">
+                            <h5 class="card-title" style="margin-top:2px;">
+                                <%= pr.name %>
+                            </h5>
+                            <p class="card-text" style='line-height: 0px;'>
+                                <%= pr.desc %>
+                            </p>
+                            <a href="#" class="btn btn-primary" style="margin-top: 10px;">Go somewhere</a>
+                        </div>
+                    </div>
+                    <%})%>
+            </div>
+        </div>
+    </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
+</script>
+</body>
+
+</html>
